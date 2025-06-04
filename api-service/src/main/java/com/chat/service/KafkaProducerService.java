@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author Miguel Castro
+ */
 @Service
 public class KafkaProducerService {
 
@@ -16,10 +19,17 @@ public class KafkaProducerService {
     private KafkaTemplate<String, String> kafkaTemplate;
 
     @Autowired
+    private OllamaService ollamaService;
+
+    @Autowired
     private ObjectMapper objectMapper;
 
     public void sendTechnologyMessage(MessageDTO messageDTO){
         try {
+            if (messageDTO.getMessage().contains("@Ollama")) {
+                String AIAnswer = ollamaService.generateService(messageDTO.getMessage());
+                messageDTO.setAIAnswer(AIAnswer);
+            }
             messageDTO.setTime(LocalDateTime.now());
             String json = objectMapper.writeValueAsString(messageDTO);
             kafkaTemplate.send(messageDTO.getTopic(), json);

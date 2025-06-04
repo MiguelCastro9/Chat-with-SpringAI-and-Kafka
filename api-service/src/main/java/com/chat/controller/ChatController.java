@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Queue;
 
+/**
+ * @author Miguel Castro
+ */
 @RestController
 @RequestMapping("/chat")
 public class ChatController {

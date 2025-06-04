@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ * @author Miguel Castro
+ */
 @Service
 public class KafkaConsumerService {
 

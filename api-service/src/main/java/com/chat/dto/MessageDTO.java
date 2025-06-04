@@ -2,22 +2,25 @@ package com.chat.dto;
 
 import java.time.LocalDateTime;
 
+/**
+ * @author Miguel Castro
+ */
 public class MessageDTO {
 
     private String username;
     private String topic;
     private String message;
-    private String AIprompt;
+    private String AI_answer;
     private LocalDateTime time;
 
     public MessageDTO() {
     }
 
-    public MessageDTO(String username, String topic, String message, String AIprompt, LocalDateTime time) {
+    public MessageDTO(String username, String topic, String message, String AI_answer, LocalDateTime time) {
         this.username = username;
         this.topic = topic;
         this.message = message;
-        this.AIprompt = AIprompt;
+        this.AI_answer = AI_answer;
         this.time = time;
     }
 
@@ -45,12 +48,12 @@ public class MessageDTO {
         this.message = message;
     }
 
-    public String getAIprompt() {
-        return AIprompt;
+    public String getAIAnswer() {
+        return AI_answer;
     }
 
-    public void setAIprompt(String AIprompt) {
-        this.AIprompt = AIprompt;
+    public void setAIAnswer(String AI_answer) {
+        this.AI_answer = AI_answer;
     }
 
     public LocalDateTime getTime() {
@@ -67,7 +70,7 @@ public class MessageDTO {
                 "username='" + username + '\'' +
                 ", topic='" + topic + '\'' +
                 ", message='" + message + '\'' +
-                ", AIprompt='" + AIprompt + '\'' +
+                ", AIAnswer='" + AI_answer + '\'' +
                 ", time=" + time +
                 '}';
     }
