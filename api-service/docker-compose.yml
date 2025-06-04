@@ -1,13 +1,28 @@
 version: '3'
 
 services:
+
+  # CONTAINER - OLLAMA
+  # docker exec -it ollama ollama run tinyllama
+  ollama:
+    hostname: ollama
+    container_name: ollama
+    image: ollama/ollama
+    ports:
+      - "11434:11434"
+
+  # CONTAINER - ZOOKEEPER
   zookeeper:
-#    platform: linux/amd64
+    platform: linux/amd64
     image: wurstmeister/zookeeper
     ports:
       - "2181:2181"
     networks:
       - my_custom_network
+    environment:
+      ZOO_HEAP_SIZE: "256"
+
+  # CONTAINER - KAFKA
   kafka:
     image: wurstmeister/kafka
     ports:
@@ -17,10 +32,12 @@ services:
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_BROKER_ID: 1
+      KAFKA_HEAP_OPTS: "-Xmx512M -Xms256M"
     depends_on:
       - zookeeper
     networks:
       - my_custom_network
+
 networks:
   my_custom_network:
     driver: bridge
