@@ -10,17 +10,17 @@ public class MessageDTO {
     private String username;
     private String topic;
     private String message;
-    private String AI_answer;
+    private String ai_answer;
     private LocalDateTime time;
 
     public MessageDTO() {
     }
 
-    public MessageDTO(String username, String topic, String message, String AI_answer, LocalDateTime time) {
+    public MessageDTO(String username, String topic, String message, String ai_answer, LocalDateTime time) {
         this.username = username;
         this.topic = topic;
         this.message = message;
-        this.AI_answer = AI_answer;
+        this.ai_answer = ai_answer;
         this.time = time;
     }
 
@@ -49,11 +49,11 @@ public class MessageDTO {
     }
 
     public String getAIAnswer() {
-        return AI_answer;
+        return ai_answer;
     }
 
-    public void setAIAnswer(String AI_answer) {
-        this.AI_answer = AI_answer;
+    public void setAIAnswer(String ai_answer) {
+        this.ai_answer = ai_answer;
     }
 
     public LocalDateTime getTime() {
@@ -70,7 +70,7 @@ public class MessageDTO {
                 "username='" + username + '\'' +
                 ", topic='" + topic + '\'' +
                 ", message='" + message + '\'' +
-                ", AIAnswer='" + AI_answer + '\'' +
+                ", ai_answer='" + ai_answer + '\'' +
                 ", time=" + time +
                 '}';
     }
