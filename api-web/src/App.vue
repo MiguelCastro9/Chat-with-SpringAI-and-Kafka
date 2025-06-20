@@ -211,7 +211,7 @@ setInterval(() => {
                 <div class="content-message">
                   <div class="username-message">{{ msg.username }}</div>
                   <div v-html="renderMarkdown(msg.message)"></div>
-                  <div v-if="msg.aianswer" v-html="renderMarkdown(msg.aianswer)"></div>
+                  <div v-if="msg.aianswer" v-html="renderMarkdown(`🤖 ${msg.aianswer}`)"></div>
                   <div class="time-message">{{ formatTime(msg.time) }}</div>
                 </div>
               </div>
