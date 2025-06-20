@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 
 /**
@@ -27,7 +26,8 @@ public class KafkaProducerService {
     public void sendTechnologyMessage(MessageDTO messageDTO){
         try {
             if (messageDTO.getMessage().contains("@Ollama")) {
-                String AIAnswer = ollamaService.generateService(messageDTO.getMessage());
+                String message = messageDTO.getMessage().replaceFirst("@Ollama", "");
+                String AIAnswer = ollamaService.generateService(message);
                 messageDTO.setAIAnswer(AIAnswer);
             }
             messageDTO.setTime(LocalDateTime.now());
@@ -40,6 +40,11 @@ public class KafkaProducerService {
 
     public void sendBusinessMessage(MessageDTO messageDTO){
         try {
+            if (messageDTO.getMessage().contains("@Ollama")) {
+                String message = messageDTO.getMessage().replaceFirst("@Ollama", "");
+                String AIAnswer = ollamaService.generateService(message);
+                messageDTO.setAIAnswer(AIAnswer);
+            }
             messageDTO.setTime(LocalDateTime.now());
             String json = objectMapper.writeValueAsString(messageDTO);
             kafkaTemplate.send(messageDTO.getTopic(), json);
