@@ -32,3 +32,5 @@ to download the necessary dependencies and the command <code>npm run dev</code> 
 
 ## 🎬 Demo
 
+https://github.com/user-attachments/assets/3e2f2917-1ac7-4bb7-b8ad-a2e9e91ee1c3
+
